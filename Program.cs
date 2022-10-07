@@ -29,5 +29,16 @@ app.MapPost("/employees", async (EmployeeDB db, Employee employee) =>
     await db.SaveChangesAsync();
     return Results.Created($"/employees/{employee.Id}", employee);
 });
+app.MapGet("/employee/{id}", async (EmployeeDB db, int id) => await db.Employees.FindAsync(id));
+app.MapPut("/employee/{id}", async (EmployeeDB db, Employee updateEmployee, int id) =>
+{
+      var employee = await db.Employees.FindAsync(id);
+      if (employee is null) return Results.NotFound();
+      employee.Name = updateEmployee.Name;
+      employee.Undername = updateEmployee.Undername;
+      employee.Role = updateEmployee.Role;
+      await db.SaveChangesAsync();
+      return Results.NoContent();
+});
 
 app.Run();
