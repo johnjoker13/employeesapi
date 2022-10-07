@@ -40,5 +40,16 @@ app.MapPut("/employee/{id}", async (EmployeeDB db, Employee updateEmployee, int 
       await db.SaveChangesAsync();
       return Results.NoContent();
 });
+app.MapDelete("/employee/{id}", async (EmployeeDB db, int id) =>
+{
+   var employee = await db.Employees.FindAsync(id);
+   if (employee is null)
+   {
+      return Results.NotFound();
+   }
+   db.Employees.Remove(employee);
+   await db.SaveChangesAsync();
+   return Results.Ok();
+});
 
 app.Run();
