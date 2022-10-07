@@ -28,7 +28,7 @@ __Users should able to?__
 
 ### Links
 
-- URL to API Docs deployed to Azure Cloud: https://employeesapi.azurewebsites.net/swagger/index.html
+- URL to API Docs deployed to Azure Cloud: https://employessapi.azurewebsites.net/swagger/index.html
 
 ### Built with
 
