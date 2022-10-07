@@ -12,7 +12,7 @@ namespace EmployeesAPI.Models
 
     class EmployeeDB : DbContext
     {
-        public EmployeeDB(DbContextOptions options) : base(options) { }
+        public EmployeeDB(DbContextOptions<EmployeeDB> options) : base(options) { }
         public DbSet<Employee> Employees { get; set; } = null!;
     }
 
