@@ -23,5 +23,11 @@ app.UseSwaggerUI(c =>
 
 app.MapGet("/", () => "Hello World!");
 app.MapGet("/employees", async (EmployeeDB db) => await db.Employees.ToListAsync());
+app.MapPost("/employees", async (EmployeeDB db, Employee employee) =>
+{
+    await db.Employees.AddAsync(employee);
+    await db.SaveChangesAsync();
+    return Results.Created($"/employees/{employee.Id}", employee);
+});
 
 app.Run();
